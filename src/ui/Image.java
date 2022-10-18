@@ -1,9 +1,13 @@
 package ui;
 
+import fc.GestionnaireImage;
+
 import java.awt.*;
 import java.awt.image.BufferedImage;
 
 public class Image extends Panel{
+
+    GestionnaireImage gestionnaireImage = GestionnaireImage.getInstance();
 
     private BufferedImage picture;
     private final Color couleur = new Color(50, 50, 50);
@@ -37,6 +41,8 @@ public class Image extends Panel{
     @Override
     public void paint(Graphics g) {
         Color back = g.getColor();
+
+        setPicture(gestionnaireImage.getImage());
 
         Rectangle recG = g.getClipBounds();
 

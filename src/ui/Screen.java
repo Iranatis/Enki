@@ -7,7 +7,6 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.io.File;
 
 public class Screen extends JPanel implements KeyListener {
 
@@ -26,7 +25,6 @@ public class Screen extends JPanel implements KeyListener {
 
         toolBar = new ToolBar(width, (int) (height*sep));
         image = new Image(width, (int) (height*(1-sep)));
-        setPicture("./data/pictures/test.jpg");
 
         this.addMouseListener(new MouseAdapter() {
             @Override
@@ -55,16 +53,6 @@ public class Screen extends JPanel implements KeyListener {
         return instance;
     }
 
-    public boolean setPicture(String path){
-        try {
-            image.setPicture(ImageIO.read(new File(path)));
-        } catch (Exception e){
-            System.out.println(e);
-            image.setPicture(null);
-            return false;
-        }
-        return true;
-    }
     @Override
     public void paint(Graphics g){
         g.setColor(Color.pink);
