@@ -38,8 +38,18 @@ public class Image extends Panel{
     public void paint(Graphics g) {
         Color back = g.getColor();
 
+        Rectangle recG = g.getClipBounds();
+
         g.setColor(couleur);
-        g.fillRect(0, 0, width, height);
+        g.fillRect(0, 0, (int) recG.getWidth(), (int) recG.getHeight());
+
+        if (picture != null){
+            double prop = Math.min(recG.getWidth()/picture.getWidth(), recG.getHeight()/ picture.getWidth());
+            int wP = (int) (picture.getWidth() * prop);
+            int wH = (int) (picture.getHeight() * prop);
+
+            g.drawImage(picture, (int) ((recG.getWidth() - wP)/2), (int) ((recG.getHeight() - wH)/2), wP, wH, null);
+        }
 
         g.setColor(back);
     }

@@ -1,6 +1,8 @@
 package ui;
 
 import javax.swing.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class Main extends JFrame {
 
@@ -8,6 +10,16 @@ public class Main extends JFrame {
         super("Enki");
 
         add(Screen.getInstance());
+
+        ActionListener actionListener = new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                repaint();
+            }
+        };
+
+        Timer t = new Timer(100, actionListener);
+        t.start();
 
         //Les détails de création de ma fenêtre
         setLocation(1000, 250);

@@ -1,11 +1,13 @@
 package ui;
 
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.io.File;
 
 public class Screen extends JPanel implements KeyListener {
 
@@ -24,25 +26,26 @@ public class Screen extends JPanel implements KeyListener {
 
         toolBar = new ToolBar(width, (int) (height*sep));
         image = new Image(width, (int) (height*(1-sep)));
+        setPicture("./data/pictures/test.jpg");
 
         this.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
                 super.mouseClicked(e);
                 if (SwingUtilities.isLeftMouseButton(e)){
-                    toolBar.mouseLeftClick(e.getX(), e.getY());
-                    image.mouseLeftClick(e.getX(), e.getY() + (int) (height*sep));
+                    toolBar.mouseLeftClick(e.getX()* toolBar.getWidth()/getWidth(), e.getY() * toolBar.getHeight()/getHeight());
+                    image.mouseLeftClick(e.getX() * image.getWidth()/getWidth(), (int) ((e.getY() - getHeight()*(1-sep)) * image.getHeight()/getHeight()));
                 } else if (SwingUtilities.isRightMouseButton(e)){
-                    toolBar.mouseRightClick(e.getX(), e.getY());
-                    image.mouseRightClick(e.getX(), e.getY() + (int) (height*sep));
+                    toolBar.mouseRightClick(e.getX()* toolBar.getWidth()/getWidth(), e.getY() * toolBar.getHeight()/getHeight());
+                    image.mouseRightClick(e.getX() * image.getWidth()/getWidth(), (int) ((e.getY() - getHeight()*(1-sep)) * image.getHeight()/getHeight()));
                 }
             }
 
             @Override
             public void mouseMoved(MouseEvent e) {
                 super.mouseMoved(e);
-                toolBar.mouseMove(e.getX(), e.getY());
-                image.mouseMove(e.getX(), e.getY() + (int) (height*sep));
+                toolBar.mouseMove(e.getX()* toolBar.getWidth()/getWidth(), e.getY() * toolBar.getHeight()/getHeight());
+                image.mouseMove(e.getX() * image.getWidth()/getWidth(), (int) ((e.getY() - getHeight()*(1-sep)) * image.getHeight()/getHeight()));
             }
         });
     }
@@ -52,13 +55,23 @@ public class Screen extends JPanel implements KeyListener {
         return instance;
     }
 
+    public boolean setPicture(String path){
+        try {
+            image.setPicture(ImageIO.read(new File(path)));
+        } catch (Exception e){
+            System.out.println(e);
+            image.setPicture(null);
+            return false;
+        }
+        return true;
+    }
     @Override
     public void paint(Graphics g){
         g.setColor(Color.pink);
         g.fillRect(0, 0, getWidth(), getHeight());
 
-        toolBar.paint(g.create(0, 0, width, (int) (height*sep)));
-        image.paint(g.create(0, (int) (height*sep), width, (int) (height*(1-sep))));
+        toolBar.paint(g.create(0, 0, getWidth(), (int) (getHeight()*sep)));
+        image.paint(g.create(0, (int) (getHeight()*sep), getWidth(), (int) (getHeight()*(1-sep)+1)));
     }
 
     @Override
