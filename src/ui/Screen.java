@@ -31,10 +31,10 @@ public class Screen extends JPanel implements KeyListener {
                 super.mouseClicked(e);
                 if (SwingUtilities.isLeftMouseButton(e)){
                     toolBar.mouseLeftClick(e.getX()* toolBar.getWidth()/getWidth(), e.getY() * toolBar.getHeight()/getHeight());
-                    image.mouseLeftClick(e.getX() * image.getWidth()/getWidth(), (int) ((getHeight()*(1-sep) - e.getY()) * image.getHeight()/getHeight()));
+                    image.mouseLeftClick(e.getX() * image.getWidth()/getWidth(), (int) ((e.getY() - getHeight()*sep) * image.getHeight()/getHeight()));
                 } else if (SwingUtilities.isRightMouseButton(e)){
                     toolBar.mouseRightClick(e.getX()* toolBar.getWidth()/getWidth(), e.getY() * toolBar.getHeight()/getHeight());
-                    image.mouseRightClick(e.getX() * image.getWidth()/getWidth(), (int) ((getHeight()*(1-sep) - e.getY()) * image.getHeight()/getHeight()));
+                    image.mouseRightClick(e.getX() * image.getWidth()/getWidth(), (int) ((e.getY() - getHeight()*sep) * image.getHeight()/getHeight()));
                 }
             }
 
@@ -42,7 +42,7 @@ public class Screen extends JPanel implements KeyListener {
             public void mouseMoved(MouseEvent e) {
                 super.mouseMoved(e);
                 toolBar.mouseMove(e.getX()* toolBar.getWidth()/getWidth(), e.getY() * toolBar.getHeight()/getHeight());
-                image.mouseMove(e.getX() * image.getWidth()/getWidth(), (int) ((getHeight()*(1-sep) - e.getY()) * image.getHeight()/getHeight()));
+                image.mouseMove(e.getX() * image.getWidth()/getWidth(), (int) ((e.getY() - getHeight()*sep) * image.getHeight()/getHeight()));
             }
         });
     }
