@@ -29,6 +29,8 @@ public class Image extends Panel{
     @Override
     public boolean mouseLeftClick(int x, int y) {
         if (x < 0 || x > width || y < 0 || y > height) return false;
+        if (x < width/10) gestionnaireImage.before();
+        if (x > 9*width/10) gestionnaireImage.next();
         return true;
     }
 
