@@ -12,6 +12,8 @@ public class Image extends Panel{
     private BufferedImage picture;
     private final Color couleur = new Color(50, 50, 50);
 
+    private boolean mouse;
+
     public Image(int width, int height) {
         super(width, height);
     }
@@ -52,11 +54,13 @@ public class Image extends Panel{
         g.fillRect(0, 0, (int) recG.getWidth(), (int) recG.getHeight());
 
         if (picture != null){
-            double prop = Math.min(recG.getWidth()/picture.getWidth(), recG.getHeight()/ picture.getWidth()) * GestionnaireImage.getInstance().getFixed_prop();
-            int wP = (int) (picture.getWidth() * prop);
-            int wH = (int) (picture.getHeight() * prop);
+            double zoom = Math.min(recG.getWidth()/picture.getWidth(), recG.getHeight()/ picture.getWidth());
+            zoom *= gestionnaireImage.getFixed_prop();
+            gestionnaireImage.setZoom(zoom);
+            int wP = (int) (picture.getWidth() * zoom);
+            int wH = (int) (picture.getHeight() * zoom);
 
-            g.drawImage(picture, (int) ((recG.getWidth() - wP)/2), (int) ((recG.getHeight() - wH)/2), wP, wH, null);
+            g.drawImage(picture, (int) ((recG.getWidth() - wP)/2 + recG.getWidth()*gestionnaireImage.getDecX()), (int) ((recG.getHeight() - wH)/2 + recG.getHeight()*gestionnaireImage.getDecY()), wP, wH, null);
         }
 
         g.setColor(back);

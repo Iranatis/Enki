@@ -1,8 +1,9 @@
 package ui;
 
+import javax.swing.event.MouseInputAdapter;
 import java.awt.*;
 
-public abstract class Panel {
+public abstract class Panel extends MouseInputAdapter {
 
     protected int width, height;
 

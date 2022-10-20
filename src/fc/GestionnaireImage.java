@@ -15,6 +15,8 @@ public class GestionnaireImage {
     private final Random r;
     private boolean boucle;
     private double fixed_prop;
+    private double zoom;
+    private double decX, decY;
 
     private GestionnaireImage(){
         images = new ArrayList<>();
@@ -22,6 +24,8 @@ public class GestionnaireImage {
         r = new Random();
         boucle = false;
         fixed_prop = 1;
+        zoom = 1;
+        decX = decY = 0;
     }
 
     public static GestionnaireImage getInstance(){
@@ -34,6 +38,8 @@ public class GestionnaireImage {
         pointeur = 0;
         boucle = false;
         fixed_prop = 1;
+        zoom = 1;
+        decX = decY = 0;
     }
 
     public void setBoucle(boolean boucle) {
@@ -51,6 +57,30 @@ public class GestionnaireImage {
 
     public void setFixed_prop(double fixed_prop) {
         this.fixed_prop = fixed_prop;
+    }
+
+    public double getZoom() {
+        return zoom;
+    }
+
+    public void setZoom(double zoom) {
+        this.zoom = zoom;
+    }
+
+    public double getDecX() {
+        return decX;
+    }
+
+    public void setDecX(double decX) {
+        this.decX = decX;
+    }
+
+    public double getDecY() {
+        return decY;
+    }
+
+    public void setDecY(double decY) {
+        this.decY = decY;
     }
 
     public void shuffle(){
@@ -98,6 +128,7 @@ public class GestionnaireImage {
             if (boucle) pointeur = 0;
         }
         fixed_prop = 1;
+        decX = decY = 0;
     }
 
     public void before(){
@@ -107,5 +138,6 @@ public class GestionnaireImage {
             if (boucle) pointeur = images.size()-1;
         }
         fixed_prop = 1;
+        decX = decY = 0;
     }
 }
