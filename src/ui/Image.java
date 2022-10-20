@@ -52,7 +52,7 @@ public class Image extends Panel{
         g.fillRect(0, 0, (int) recG.getWidth(), (int) recG.getHeight());
 
         if (picture != null){
-            double prop = Math.min(recG.getWidth()/picture.getWidth(), recG.getHeight()/ picture.getWidth());
+            double prop = Math.min(recG.getWidth()/picture.getWidth(), recG.getHeight()/ picture.getWidth()) * GestionnaireImage.getInstance().getFixed_prop();
             int wP = (int) (picture.getWidth() * prop);
             int wH = (int) (picture.getHeight() * prop);
 

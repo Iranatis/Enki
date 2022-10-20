@@ -1,5 +1,7 @@
 package ui;
 
+import fc.GestionnaireImage;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.KeyEvent;
@@ -18,9 +20,13 @@ public class Screen extends JPanel implements KeyListener {
     private final ToolBar toolBar;
     private final Image image;
 
+    GestionnaireImage gestionnaireImage;
+
     private Screen(){
         addKeyListener(this);
         setFocusable(true);
+
+        gestionnaireImage = GestionnaireImage.getInstance();
 
         toolBar = new ToolBar(width, (int) (height*sep));
         image = new Image(width, (int) (height*(1-sep)));
@@ -68,7 +74,21 @@ public class Screen extends JPanel implements KeyListener {
 
     @Override
     public void keyPressed(KeyEvent e) {
-
+        int keyCode = e.getKeyCode();
+        switch( keyCode ) {
+            case KeyEvent.VK_UP:
+                // handle up
+                break;
+            case KeyEvent.VK_DOWN:
+                // handle down
+                break;
+            case KeyEvent.VK_LEFT:
+                gestionnaireImage.before();
+                break;
+            case KeyEvent.VK_RIGHT :
+                gestionnaireImage.next();
+                break;
+        }
     }
 
     @Override

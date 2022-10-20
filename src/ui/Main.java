@@ -3,7 +3,6 @@ package ui;
 import fc.GestionnaireImage;
 
 import javax.swing.*;
-import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class Main extends JFrame {
@@ -13,12 +12,7 @@ public class Main extends JFrame {
 
         add(Screen.getInstance());
 
-        ActionListener actionListener = new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                repaint();
-            }
-        };
+        ActionListener actionListener = e -> repaint();
 
         Timer t = new Timer(100, actionListener);
         t.start();

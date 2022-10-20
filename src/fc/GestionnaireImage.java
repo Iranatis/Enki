@@ -14,12 +14,14 @@ public class GestionnaireImage {
     private int pointeur;
     private final Random r;
     private boolean boucle;
+    private double fixed_prop;
 
     private GestionnaireImage(){
         images = new ArrayList<>();
         pointeur = 0;
         r = new Random();
         boucle = false;
+        fixed_prop = 1;
     }
 
     public static GestionnaireImage getInstance(){
@@ -31,6 +33,7 @@ public class GestionnaireImage {
         images.clear();
         pointeur = 0;
         boucle = false;
+        fixed_prop = 1;
     }
 
     public void setBoucle(boolean boucle) {
@@ -40,6 +43,14 @@ public class GestionnaireImage {
     public BufferedImage getImage(){
         if (images.isEmpty()) return null;
         return images.get(pointeur);
+    }
+
+    public double getFixed_prop() {
+        return fixed_prop;
+    }
+
+    public void setFixed_prop(double fixed_prop) {
+        this.fixed_prop = fixed_prop;
     }
 
     public void shuffle(){
@@ -86,6 +97,7 @@ public class GestionnaireImage {
             pointeur--;
             if (boucle) pointeur = 0;
         }
+        fixed_prop = 1;
     }
 
     public void before(){
@@ -94,5 +106,6 @@ public class GestionnaireImage {
             pointeur++;
             if (boucle) pointeur = images.size()-1;
         }
+        fixed_prop = 1;
     }
 }
