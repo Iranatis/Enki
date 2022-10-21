@@ -16,7 +16,7 @@ public class GestionnaireImage {
     private boolean boucle;
     private double fixed_prop;
     private double zoom;
-    private double decX, decY;
+    private int decX, decY;
 
     private GestionnaireImage(){
         images = new ArrayList<>();
@@ -67,20 +67,20 @@ public class GestionnaireImage {
         this.zoom = zoom;
     }
 
-    public double getDecX() {
+    public int getDecX() {
         return decX;
     }
 
-    public void setDecX(double decX) {
-        this.decX = decX;
+    public void addDecX(int decX) {
+        this.decX += decX;
     }
 
-    public double getDecY() {
+    public int getDecY() {
         return decY;
     }
 
-    public void setDecY(double decY) {
-        this.decY = decY;
+    public void addDecY(int decY) {
+        this.decY += decY;
     }
 
     public void shuffle(){
