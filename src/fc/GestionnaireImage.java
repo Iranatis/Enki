@@ -18,6 +18,8 @@ public class GestionnaireImage {
     private double zoom;
     private int decX, decY;
 
+    private double ecartZoom = 0.05;
+
     private GestionnaireImage(){
         images = new ArrayList<>();
         pointeur = 0;
@@ -56,12 +58,12 @@ public class GestionnaireImage {
     }
 
     public void addFixed_prop() {
-        fixed_prop += .1;
+        fixed_prop += ecartZoom;
     }
 
     public void subFixed_prop() {
-        fixed_prop -= .1;
-        if (fixed_prop < 0) fixed_prop = 0;
+        fixed_prop -= ecartZoom;
+        if (fixed_prop < ecartZoom) fixed_prop = ecartZoom;
     }
 
     public void resetFixed_prop() {
