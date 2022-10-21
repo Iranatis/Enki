@@ -12,7 +12,7 @@ public class InteractionImage extends MouseInputAdapter {
 
     Image image;
 
-    enum State {IDLE, ARMED_L, PANNING_L};
+    enum State {IDLE, ARMED_L, PANNING_L, PRESS_L_N, PRESS_L_B}
 
     private State state = State.IDLE;
     private int posBaseX, posdBaseY;
@@ -27,9 +27,13 @@ public class InteractionImage extends MouseInputAdapter {
 
     public void mousePressed(MouseEvent e){
         if (e.getButton() == MouseEvent.BUTTON1) {
-            posBaseX = e.getX();
-            posdBaseY = e.getY();
-            if (state == State.IDLE) state = State.ARMED_L;
+            if (image.inImage(e.getX(), e.getY()) && state == State.IDLE) {
+                posBaseX = e.getX();
+                posdBaseY = e.getY();
+                state = State.ARMED_L;
+            }
+            if (state == State.IDLE && e.getX() > 9 * image.getWidth() / 10) state = State.PRESS_L_N;
+            if (state == State.IDLE && e.getX() < image.getWidth() / 10) state = State.PRESS_L_B;
         }
     }
 
@@ -37,6 +41,14 @@ public class InteractionImage extends MouseInputAdapter {
         if (e.getButton() == MouseEvent.BUTTON1){
             if (state == State.ARMED_L) state = State.IDLE;
             if (state == State.PANNING_L) state = State.IDLE;
+            if (state == State.PRESS_L_N && e.getX() > 9* image.getWidth()/10) {
+                gestionnaireImage.next();
+                state = State.IDLE;
+            }
+            if (state == State.PRESS_L_B && e.getX() < image.getWidth()/10) {
+                gestionnaireImage.before();
+                state = State.IDLE;
+            }
         }
     }
 
