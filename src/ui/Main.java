@@ -11,12 +11,9 @@ import java.awt.event.KeyListener;
 
 public class Main extends JFrame implements KeyListener {
 
-    private final ToolBar toolBar;
-    private final Image image;
-
-    private final InteractionImage interactionImage;
-
     GestionnaireImage gestionnaireImage;
+
+    double sep = 0.05;
 
     Main(){
         super("Enki");
@@ -26,18 +23,34 @@ public class Main extends JFrame implements KeyListener {
 
         gestionnaireImage = GestionnaireImage.getInstance();
 
-        toolBar = new ToolBar();
-        image = new Image();
+        ToolBar toolBar = new ToolBar();
+        Image image = new Image();
 
-        interactionImage = new InteractionImage(image);
+        new InteractionImage(image);
 
-        setLayout(new BorderLayout());
-        add(toolBar, BorderLayout.NORTH);
-        add(image);
+        setLayout(new GridBagLayout());
+        GridBagConstraints gbc = new GridBagConstraints();
+
+        gbc.fill = GridBagConstraints.BOTH;
+        gbc.weightx = 1;
+        gbc.weighty = sep;
+
+        gbc.gridx = 0;
+        gbc.gridy = 0;
+        gbc.gridheight = 1;
+        add(toolBar, gbc);
+
+        gbc.weightx = 1;
+        gbc.weighty = 1-sep;
+
+        gbc.gridx = 0;
+        gbc.gridy = 1;
+        gbc.gridheight = 9;
+        add(image, gbc);
 
         ActionListener actionListener = e -> repaint();
 
-        Timer t = new Timer(50, actionListener);
+        Timer t = new Timer(20, actionListener);
         t.start();
 
         //Les détails de création de ma fenêtre
