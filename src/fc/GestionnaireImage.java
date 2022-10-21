@@ -55,8 +55,17 @@ public class GestionnaireImage {
         return fixed_prop;
     }
 
-    public void setFixed_prop(double fixed_prop) {
-        this.fixed_prop = fixed_prop;
+    public void addFixed_prop() {
+        fixed_prop += .1;
+    }
+
+    public void subFixed_prop() {
+        fixed_prop -= .1;
+        if (fixed_prop < 0) fixed_prop = 0;
+    }
+
+    public void resetFixed_prop() {
+        fixed_prop = 1;
     }
 
     public double getZoom() {

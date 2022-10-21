@@ -69,10 +69,10 @@ public class Main extends JFrame implements KeyListener {
         int keyCode = e.getKeyCode();
         switch( keyCode ) {
             case KeyEvent.VK_UP:
-                // handle up
+                gestionnaireImage.addFixed_prop();
                 break;
             case KeyEvent.VK_DOWN:
-                // handle down
+                gestionnaireImage.subFixed_prop();
                 break;
             case KeyEvent.VK_LEFT:
                 gestionnaireImage.before();
