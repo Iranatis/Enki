@@ -37,7 +37,6 @@ public class Main extends JFrame implements KeyListener {
 
         gbc.gridx = 0;
         gbc.gridy = 0;
-        gbc.gridheight = 1;
         add(toolBar, gbc);
 
         gbc.weightx = 1;
@@ -45,7 +44,6 @@ public class Main extends JFrame implements KeyListener {
 
         gbc.gridx = 0;
         gbc.gridy = 1;
-        gbc.gridheight = 9;
         add(image, gbc);
 
         ActionListener actionListener = e -> repaint();
