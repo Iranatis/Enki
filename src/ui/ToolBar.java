@@ -2,6 +2,7 @@ package ui;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 
 public class ToolBar extends JPanel {
@@ -11,6 +12,17 @@ public class ToolBar extends JPanel {
 
     ToolBar(){
         buttons = new ArrayList<>();
+    }
+
+    public void mousePressed(MouseEvent e){
+    }
+
+    public void mouseReleased(MouseEvent e){
+
+    }
+
+    public void mouseDragged(MouseEvent e){
+
     }
 
     public void paint(Graphics g){

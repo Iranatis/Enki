@@ -1,7 +1,8 @@
 package ui;
 
 import fc.GestionnaireImage;
-import ui.Intaractions.InteractionImage;
+import ui.Interactions.InteractionImage;
+import ui.Interactions.InteractionToolBar;
 
 import javax.swing.*;
 import java.awt.*;
@@ -27,6 +28,7 @@ public class Main extends JFrame implements KeyListener {
         Image image = new Image();
 
         new InteractionImage(image);
+        new InteractionToolBar(toolBar);
 
         setLayout(new GridBagLayout());
         GridBagConstraints gbc = new GridBagConstraints();

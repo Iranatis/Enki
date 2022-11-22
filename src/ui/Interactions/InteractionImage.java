@@ -1,4 +1,4 @@
-package ui.Intaractions;
+package ui.Interactions;
 
 import fc.GestionnaireImage;
 import ui.Image;
